@@ -8,16 +8,20 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.static('./public'));
 
-const port = 3000;
+const port = process.env.PORT || process.env.VCAP_APP_PORT || 3000;
 
 const assistant = new AssistantV1({
+  
   username: process.env.ASSISTANT_USERNAME,
   password: process.env.ASSISTANT_PASSWORD,
+  
+  
   url: 'https://gateway.watsonplatform.net/assistant/api/',
   version: '2018-02-16',
 });
 
 app.post('/conversation/', (req, res) => {
+//app.post('https://eres-chatbot-unexpected-manatee.mybluemix.net/conversation/', (req, res) => {
   const { text, context = {} } = req.body;
 
   const params = {

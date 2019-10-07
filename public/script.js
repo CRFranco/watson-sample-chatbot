@@ -21,7 +21,7 @@ const InsertTemplateInTheChat = (template) => {
 
 // Calling server and get the watson output
 const getWatsonMessageAndInsertTemplate = async (text = '') => {
-  const uri = 'http://localhost:3000/conversation/';
+  const uri = 'https://eres-chatbot-unexpected-manatee.mybluemix.net/conversation/';
 
   const response = await (await fetch(uri, {
     method: 'POST',
